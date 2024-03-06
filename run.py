@@ -11,3 +11,20 @@ city_name = 'Denver'
 request_url = f"{base_url}{api_method}?key={api_key}&q={city_name}"
 
 print(request_url)
+
+# this is how we make the request
+res = requests.get(request_url)
+
+
+# this is how we get the data from the request 
+
+if res.ok:
+    data = res.json()
+    print(data)
+    print(data['location']['name'])
+    print(data['current']['temp_f'])
+else:
+    error = res.json()
+    print(error['error']['message'])
+
+
